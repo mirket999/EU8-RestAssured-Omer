@@ -5,18 +5,18 @@ import org.junit.jupiter.api.BeforeAll;
 
 import static io.restassured.RestAssured.baseURI;
 
-public class SpartanTestBase {
+public abstract class SpartanTestBase {
+
     @BeforeAll
     public static void init(){
         //save baseurl inside this variable so that we dont need to type each http method.
         baseURI = "http://54.152.222.159:8000";
 
-        //get ip address from configuraitons
-        String dbUrl = "jdbc:oracle:thin:@54.205.239.177:1521:xe";
-        String dbUsername = "hr";
-        String dbPassword = "hr";
+        String dbUrl = "jdbc:oracle:thin:@54.152.222.159:1521:xe";
+        String dbUsername = "SP";
+        String dbPassword = "SP";
 
-        //  DBUtils.createConnection(dbUrl,dbUsername,dbPassword);
+        //DBUtils.createConnection(dbUrl,dbUsername,dbPassword);
     }
 
     @AfterAll
@@ -24,4 +24,7 @@ public class SpartanTestBase {
 
         //DBUtils.destroy();
     }
+
+
+
 }

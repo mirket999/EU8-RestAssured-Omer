@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class HrGetRequests {
 
     @BeforeAll
-    public static void test1(){
+    public static void init(){
         baseURI= "http://54.152.222.159:1000/ords/hr";
     }
 
