@@ -1,5 +1,6 @@
 package com.cydeo.day6;
 
+import com.cydeo.POJO.Search;
 import com.cydeo.POJO.Spartan;
 import com.cydeo.utilities.SpartanTestBase;
 import com.google.gson.Gson;
@@ -48,4 +49,23 @@ public class SpartanPOJOGetRequestTest extends SpartanTestBase {
         Spartan object = jsonPath.getObject("content[0]", Spartan.class);
         System.out.println("object = " + object);
     }
+
+    @Test
+    void test3() {
+        Response response = given().accept(ContentType.JSON)
+                .and().queryParams("nameContains", "a",
+                        "gender", "Male")
+                .when().get("/api/spartans/search")
+                .then().statusCode(200)
+                .extract().response();
+
+        Search searchResult = response.as(Search.class);
+        System.out.println("searchResult.getContent() = " + searchResult.getContent());
+        System.out.println("searchResult.getContent().get(0) = " + searchResult.getContent().get(0));
+        System.out.println("searchResult.getContent().get(1).getName() = " + searchResult.getContent().get(1).getName());
+
+
+    }
+
+
 }
