@@ -1,47 +1,26 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
   "$id": "http://example.com/example.json",
   "type": "object",
-  "title": "POST /api/spartans endpoint success response",
-  "description": "Schema for how successful post body should look like",
   "default": {},
-  "examples": [
-    {
-      "success": "A Spartan is Born!",
-      "data": {
-        "id": 84,
-        "name": "ABC",
-        "gender": "Female",
-        "phone": 1000000000
-      }
-    }
-  ],
+  "title": "Root Schema",
   "required": [
     "success",
     "data"
   ],
   "properties": {
     "success": {
-      "$id": "#/properties/success",
       "type": "string",
-      "title": "The success schema",
-      "description": "An explanation about the purpose of this instance.",
-      "pattern": "^A Spartan is Born!$"
+      "default": "",
+      "title": "The success Schema",
+      "examples": [
+        "A Spartan is Born!"
+      ]
     },
     "data": {
-      "$id": "#/properties/data",
       "type": "object",
-      "title": "The data schema",
-      "description": "This is the actual data added to the server",
       "default": {},
-      "examples": [
-        {
-          "id": 84,
-          "name": "ABC",
-          "gender": "Female",
-          "phone": 1000000000
-        }
-      ],
+      "title": "The data Schema",
       "required": [
         "id",
         "name",
@@ -50,43 +29,53 @@
       ],
       "properties": {
         "id": {
-          "title": "Id",
           "type": "integer",
+          "default": 0,
+          "title": "The id Schema",
           "examples": [
-            33
-          ],
-          "minimum": 1,
-          "maximum": 100000
+            101
+          ]
         },
         "name": {
-          "title": "Name",
           "type": "string",
           "default": "",
+          "title": "The name Schema",
           "examples": [
-            "Wilek"
-          ],
-          "minLength": 2,
-          "maxLength": 15
+            "Abuziddin"
+          ]
         },
         "gender": {
-          "title": "Gender",
           "type": "string",
-          "default": "Male",
+          "default": "",
+          "title": "The gender Schema",
           "examples": [
             "Male"
-          ],
-          "pattern": "^(Male|Female)$"
+          ]
         },
         "phone": {
-          "title": "Phone",
           "type": "integer",
+          "default": 0,
+          "title": "The phone Schema",
           "examples": [
-            2877865902
-          ],
-          "minimum": 1000000000,
-          "maximum": 9999999999999
+            1042902741
+          ]
         }
-      }
+      },
+      "examples": [{
+        "id": 101,
+        "name": "Abuziddin",
+        "gender": "Male",
+        "phone": 1042902741
+      }]
     }
-  }
+  },
+  "examples": [{
+    "success": "A Spartan is Born!",
+    "data": {
+      "id": 101,
+      "name": "Abuziddin",
+      "gender": "Male",
+      "phone": 1042902741
+    }
+  }]
 }

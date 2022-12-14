@@ -1,4 +1,5 @@
 package com.cydeo.day10;
+
 import com.cydeo.utilities.SpartanAuthTestBase;
 import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;
@@ -8,8 +9,6 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 
 import static io.restassured.RestAssured.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 public class JsonSchemaValidationTest extends SpartanAuthTestBase {
 
@@ -40,6 +39,28 @@ public class JsonSchemaValidationTest extends SpartanAuthTestBase {
                 .then().assertThat()
                 .statusCode(200)
                 .body(JsonSchemaValidator.matchesJsonSchema(new File("src/test/resources/allSpartansSchema.json")))
+                .log().everything();
+    }
+
+    @DisplayName("POST request to spartans and verify schema")
+    @Test
+    public void postSpartansSchemaTest(){
+
+        given().
+                accept(ContentType.JSON)
+                .contentType(ContentType.JSON)
+                .auth().basic("admin", "admin")
+                .body("{\n" +
+                        "        \n" +
+                        "        \"name\": \"Abuziddin\",\n" +
+                        "        \"gender\": \"Male\",\n" +
+                        "        \"phone\": 1042902741\n" +
+                        "    }")
+        .when()
+                .post("/api/spartans")
+        .then().assertThat()
+                .statusCode(201)
+                .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("spartanPostJsonSchema.json"))
                 .log().everything();
     }
 
