@@ -3,7 +3,6 @@ package com.cydeo.day7;
 import com.cydeo.POJO.Spartan;
 import com.cydeo.utilities.SpartanTestBase;
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.DisplayName;
